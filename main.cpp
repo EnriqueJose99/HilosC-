@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include <pthread.h>
 #include <unistd.h>
+#include "Thread.h"
+#include "MyThread.h"
 using namespace std;
 #define NUM_HILOS 10
 
@@ -11,8 +13,8 @@ pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 void* say_Something(void* something){
   char* palabra = (char*)something;
   int sanctus = 0;
-  while (sanctus < 3) {
-    cout<<palabra<<endl;
+  while (true) {
+    cout<<palabra<<" "<<sanctus++<<endl;
     sleep(3);
     sanctus++;
   }
@@ -32,9 +34,17 @@ void* PrintHello(void* threadid){
   pthread_exit(NULL);
 }
 int main() {
-  pthread_t hilo1;
+  Thread* myThread = new MyThread();
+  myThread->start();
+  delete myThread;
+
+
+  /*pthread_t hilo1;
   pthread_create(&hilo1, NULL,say_Something,(void*)"Hola Mundo");
   pthread_join(hilo1, NULL);
+  */
+
+
   /*pthread_t threads[NUM_HILOS];
   int control,i;
 
