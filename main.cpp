@@ -16,7 +16,7 @@ void* say_Something(void* something){
   while (true) {
     cout<<palabra<<" "<<sanctus++<<endl;
     sleep(3);
-    sanctus++;
+    sanctus+= 1;
   }
 }
 void* PrintHello(void* threadid){
@@ -39,10 +39,10 @@ int main() {
   delete myThread;
 
 
-  /*pthread_t hilo1;
+  pthread_t hilo1;
   pthread_create(&hilo1, NULL,say_Something,(void*)"Hola Mundo");
   pthread_join(hilo1, NULL);
-  */
+
 
 
   /*pthread_t threads[NUM_HILOS];
